@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class=" flex max-w-7xl mx-auto px-6 py-2 xl:px-0 bg[#9ca3af] flex-wrap items-start ">
+    <div class="sidebar w-full xl:w-1/4 ">
+        <h1 class="mb-3 mt-4 text-xl uppercase">Search</h1>
+        <form method="get" action=".">
+            <div class="flex ">
+                <input type="text" name='query' placeholder="   Search"
+                    class="p-3    shadow-lg hover:shadow-inner bg-[#6b7280] border-0">
+                <button class="p-3 bg-[#6b7280] border-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                </button>
+            </div>
+        </form>
+        <h3 class="mt-6 mb-3 text-xl uppercase">Catagories</h3>
+        <ul class="list-none space-y-2 py-3">
+            <li><a href="{% url 'shop' %}" class=" text-lg text-bold {% if not active_catag %}text-[#6b21a8]{% else %}text-[#020617{% endif %}">All Catagories</a></li>
+
+            {% for catag in catalog %}
+            <li><a href="{% url 'shop' %}?catagory={{catag.slug}}" class=" text-lg text-bold {% if catag.slug == active_catag %}text-[#6b21a8]{% else %}text-[#020617{% endif %}">{{catag.name}}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+    <div class="sidebar w-full xl:w-3/4 ">
+        <div class="product flex item-center flex-wrap">
+            {% for product in products %}
+                {%include 'product/product_list/productlist.html'%}
+            
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
