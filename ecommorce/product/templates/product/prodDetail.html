@@ -1,14 +1,20 @@
 {% extends 'core/base.html' %}
 {% block content %}
-<div class="max-w-7xl mx-auto flex flex-wrap px-6 py-6 xl:px-0 ">
-    <div class=" image w-full mb-6 lg:w-2/3 lg:mb-0">
-        <img class="rounded-xl" src="https://carwow-uk-wp-3.imgix.net/18015-MC20BluInfinito-scaled-e1666008987698.jpg?auto=format&cs=tinysrgb&fit=clip&ixlib=rb-1.1.0&q=10&w=800" alt="">
+<div class="max-w-7xl mx-auto flex flex-wrap px-6 py-6 xl:px-0  ">
+    <div class=" imag w-full mb-6 lg:w-2/3 lg:mb-0 px-3">
+        <img class="rounded-xl" src="{{product.product_img.url}}" alt="">
     </div>
     <div class="detail w-full mb-6 lg:mb-0 lg:w-1/3">
         <h3 class="text-[#082f49] text-lg capitalize font-semibold "> {{product.name}}</h3>
-        <p class="text-[#6b7280] text-sm mb-4">$99.99</p>
-        <p class="text-base capitalize "> blasdfl sdlkfjsd lfjksldfjlksdjfklsdfj lks klsdjflksdjfkllksdfj lk</p>
-        <button class="rounded px-2 py-3 mt-10 bg-[#0284c7] hover:bg-[#1e40af]"> Add To Cart</button>
+        <p class="text-[#6b7280] text-sm mb-4">${{product.price}}</p>
+        <p class="text-base capitalize "> {{product.description}}</p>
+        <a 
+        href="#" 
+        class="rounded inline-block px-2 py-3 mt-10 bg-[#0284c7] hover:bg-[#1e40af]"
+        hx-get="{% url 'add_to_cart' product.id %}" 
+        hx-target="#menu-cart-button" 
+        hx-swap="outerHTML" 
+        > Add To Cart</a>
         
     </div>
 </div>
